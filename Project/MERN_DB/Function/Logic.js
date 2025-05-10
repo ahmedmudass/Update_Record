@@ -1,5 +1,7 @@
 const User = require("../Collection/User");
 let bcrypt = require("bcrypt")
+let jwt = require("jsonwebtoken")
+require("dotenv").config
 
 let main_function = {
     home:async function(req,res){
@@ -62,6 +64,31 @@ let main_function = {
         } catch (error) {
             res.status(501).json({msg:error.message})
             
+        }
+    },
+
+    login_work:async function(req,res){
+        try {
+            let {email, password} = req.body;
+
+            let find_user_email = await User.findOne({email})
+            if (!find_user_email){
+                return res.status(404).json({msg : "email not found"})
+            }
+            let getpassword = bcrypt.compareSync(password,find_user_email.password)
+            if (!getpassword){
+                return res.status(404).json({msg : "password is incorrect"})
+            }
+            let user_record = jwt.sign({id : find_user_email._id},password.env.JWT_KEY,{expiresIn:"2d"})
+            return res.status(201).json({
+                msg:"login successfully",
+                user_record,
+                user:{
+                    n : find_user_email.name,
+                    e:find_user_email.email
+                }})
+        } catch (error) {
+            return res.status(501).json({msg : error.message})
         }
     }
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {toast,ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 
 export default function Regsiter() {
@@ -72,6 +73,8 @@ export default function Regsiter() {
                 onChange={(e)=>setAge(e.target.value)}/>
 
                 <button className='btn-btn-primary my-2' onClick={save_data}>Register Yourself</button>
+                <br/>
+                <Link to="/log">Login Your Account</Link>
                 <ToastContainer/>
         </div>
 

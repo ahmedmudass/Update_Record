@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.js"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import Regsiter from "./Component/Regsiter"
 import Showdata from './Component/Showdata';
+import Login from './Component/Login';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Regsiter/>}/>
             <Route path="/get" element={<Showdata/>}/>
+            <Route path="/log" element={<Login/>}/>
         </Routes>
     </div>
     </BrowserRouter>
