@@ -1,7 +1,17 @@
 const User = require("../Collection/User");
 let bcrypt = require("bcrypt")
+let nodemailer = require("nodemailer")
 let jwt = require("jsonwebtoken")
-require("dotenv").config
+require("dotenv").config()
+
+let email_info = nodemailer.createTransport({
+
+    service:"gmail",
+    auth:{
+        user:process.env.EMAIL,
+        pass:process.env.PASSKEY
+    }
+})
 
 let main_function = {
     home:async function(req,res){
@@ -26,8 +36,24 @@ let main_function = {
 
         } catch (error){
             res.status(501).json({ msg: error.message})
-        }
-    },
+
+            let Email_Body = {
+                to : email,
+                from : process.env.EMAIL,
+                subject : "Registered Successfully",
+                html : `<h3> ${name}<br/><br/>your account has been registered successfully, congratulations.<br/>
+                          <a href='http://localhost:3004/web/i'>continue on website<a/>`
+
+            }
+
+            email_info.sendMail(Email_Body,function(error,info){
+                if(error) {
+                    console.log(error.message)
+                } else {
+                    console.log("email has been sent successfully")
+                }
+            })
+        }},
 
     get_user : async function(req,res){
         try {
