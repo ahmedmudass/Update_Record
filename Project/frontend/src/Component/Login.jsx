@@ -49,7 +49,8 @@ export default function Login() {
                 <ToastContainer/>
                 <br/>
 
-                <Link to="/">Register Your Account</Link>
+                <Link to="/">Register Your Account</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Link to="/fp">Forget Your password</Link>
         </div>
 
     )

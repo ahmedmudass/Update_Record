@@ -6,6 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import Regsiter from "./Component/Regsiter"
 import Showdata from './Component/Showdata';
 import Login from './Component/Login';
+import Forgetpass from './Component/Forgetpass';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Regsiter/>}/>
             <Route path="/get" element={<Showdata/>}/>
             <Route path="/log" element={<Login/>}/>
+            <Route path="/fp" element={<Forgetpass/>}/>
         </Routes>
     </div>
     </BrowserRouter>
